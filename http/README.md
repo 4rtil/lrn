@@ -1,30 +1,28 @@
-#RESTful API guidelines
+# RESTful API guidelines
 
-##Definitions
+## Definitions
 
-###REST
-```
-REST (REpresentational State Transfer) is an architectural style for developing web services. REST is popular due to its simplicity and the fact that it builds upon existing systems and features of the internet's HTTP in order to achieve its objectives, as opposed to creating new standards, frameworks and technologies.
-```
+### REST
+> REST (REpresentational State Transfer) is an architectural style for developing web services. REST is popular due to its simplicity and the fact that it builds upon existing systems and features of the internet's HTTP in order to achieve its objectives, as opposed to creating new standards, frameworks and technologies.
 
-###API
+### API
 
-###Endpoint
+### Endpoint
 
-###Collections
+### Collections
 
-###URL
+### URL
 
-###URI
+### URI
 
-##HTTP methods
+## HTTP methods
 
-##HTTP response status codes
+## HTTP response status codes
 
-##Best practices
+## Best practices
 
-###Searching
-###Sorting
-###Filtering
-###Pagination
-###Versioning
+### Searching
+### Sorting
+### Filtering
+### Pagination
+### Versioning
