@@ -1,4 +1,4 @@
-e strict';
+'use strict';
 
 process.stdin.resume();
 process.stdin.setEncoding('utf-8');
@@ -10,7 +10,7 @@ process.stdin.on('data', inputStdin => {
     inputString += inputStdin;
 });
 
-process.stdin.on('end', _ => {
+process.stdin.on('end', _ => { 
     inputString = inputString.replace(/\s*$/, '')
         .split('\n')
         .map(str => str.replace(/\s*$/, ''));
@@ -49,4 +49,3 @@ function main() {
 
     miniMaxSum(arr);
 }
-
