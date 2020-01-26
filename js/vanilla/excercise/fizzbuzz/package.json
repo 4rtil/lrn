@@ -1,0 +1,15 @@
+{
+  "name": "excercise",
+  "version": "1.0.0",
+  "description": "Excercise",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node $npm_package_main"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^6.2.0"
+  }
+}
