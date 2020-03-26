@@ -43,7 +43,9 @@ _.each = function(list, callback) {
 
 ## currying
 
-## closures
+# closures
+
+Steps:
 
 1. create a parent function
 2. define some variables in parent's local scope
@@ -51,6 +53,7 @@ _.each = function(list, callback) {
 4. return that function inside the parent function
 
 Example:
+
 ```javascript
 const countClues = () => {
     let n = 0;
@@ -70,7 +73,11 @@ counter.reset(); //0
 
 ## callbacks
 
-## Construct a function named intersection that compares input arrays and returns a new array with elements found in all of the inputs. BONUS: Use reduce! 
+# arrays - functional style
+
+## exercise 1 - intersection
+
+Construct a function named intersection that compares input arrays and returns a new array with elements found in all of the inputs. BONUS: Use reduce! 
 ```javascript
 function intersection(...arrays) {
     //reduces an array of arrays to a single array...
@@ -86,7 +93,10 @@ function intersection(...arrays) {
 console.log("Intersection [5, 15, 9]: " + intersection([5, 10, 99, 15, 20, 9], [15, 9, 88, 1, 99, 5, 7], [1, 10, 15, 5, 20, 9]));
 console.log("Intersection [0]: " + intersection([0, 0, 0, 1, 1, 1], [0], [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1], [1, 0], [0], [1, 0, 0, 0]));
 ```
-## Construct a function union that compares input arrays and returns a new array that contains all elements. If there are duplicate elements, only add it once to the new array. Preserve the order of the elements starting from the first element of the first input array. BONUS: Use reduce! 
+
+## exercise 2 - union
+
+Construct a function union that compares input arrays and returns a new array that contains all elements. If there are duplicate elements, only add it once to the new array. Preserve the order of the elements starting from the first element of the first input array. BONUS: Use reduce! 
 ```javascript
 function union(...arrays) {
     //reduces an array of arrays to a single array...
