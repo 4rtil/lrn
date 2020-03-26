@@ -1,5 +1,6 @@
-//storing data by reference (non-primitive types i.e. objects, functions, arrays, etc.) & by value (primitive types)
+## storing data by reference (non-primitive types i.e. objects, functions, arrays, etc.) & by value (primitive types)
 
+```javascript
 let game = {
     "suspects": [
         {
@@ -11,22 +12,25 @@ let game = {
         }
     ]
 }
+```
 
-//destructuring
+## destructuring
 
+```javascript
 var [a, [b, [c, d]]] = [1, [2, [[[3, 4], 5], 6]]];
 
 var [{color: col1}, {color: col2}] = game.suspects;
+```
 
-//looping through props of an object
+## looping through props of an object
 
-//are JS prototypes from OOP or FP?
+## are JS prototypes from OOP or FP?
 
-//scope
+# scope
 
-//everytime a function is invoked, new execution context is created
+everytime a function is invoked, new execution context is created
 
-//implementation of underscore's each function
+## implementation of underscore's each function
 var _ = {};
 
 _.each = function(list, callback) {
@@ -35,21 +39,19 @@ _.each = function(list, callback) {
     }
 };
 
-//higher-order functions - functions that accept a function as input or return a function on output
+## higher-order functions - functions that accept a function as input or return a function on output
 
-//currying
+## currying
 
-//closures
+## closures
 
-/*
 1. create a parent function
 2. define some variables in parent's local scope
 3. define a child function inside the parent function
 4. return that function inside the parent function
-*/
 
-//Example:
-
+Example:
+```javascript
 const countClues = () => {
     let n = 0;
     return {
@@ -64,11 +66,12 @@ counter.count(); //1
 counter.count(); //2
 counter.count(); //3
 counter.reset(); //0
+```
 
-//callbacks
+## callbacks
 
-//Construct a function named intersection that compares input arrays and returns a new array with elements found in all of the inputs. BONUS: Use reduce! 
-
+## Construct a function named intersection that compares input arrays and returns a new array with elements found in all of the inputs. BONUS: Use reduce! 
+```javascript
 function intersection(...arrays) {
     //reduces an array of arrays to a single array...
     return arrays.reduce((accumulator, current, index, array) => { 
@@ -82,9 +85,9 @@ function intersection(...arrays) {
 
 console.log("Intersection [5, 15, 9]: " + intersection([5, 10, 99, 15, 20, 9], [15, 9, 88, 1, 99, 5, 7], [1, 10, 15, 5, 20, 9]));
 console.log("Intersection [0]: " + intersection([0, 0, 0, 1, 1, 1], [0], [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1], [1, 0], [0], [1, 0, 0, 0]));
-
-//Construct a function union that compares input arrays and returns a new array that contains all elements. If there are duplicate elements, only add it once to the new array. Preserve the order of the elements starting from the first element of the first input array. BONUS: Use reduce! 
-
+```
+## Construct a function union that compares input arrays and returns a new array that contains all elements. If there are duplicate elements, only add it once to the new array. Preserve the order of the elements starting from the first element of the first input array. BONUS: Use reduce! 
+```javascript
 function union(...arrays) {
     //reduces an array of arrays to a single array...
     return arrays.reduce((accumulator, current, index, array) => {
@@ -99,6 +102,7 @@ function union(...arrays) {
   // should log: [5, 10, 15, 88, 1, 7, 100]
   
   console.log('Union 2 [0,1,10]: ' + union([0,7,7,7,0], [], [], [0,0,1,1,1,1,10,1,0], [0,0,0,0]));
+```
+# PATTERNS
 
-  //PATTERNS
-  //module pattern
+## module pattern
