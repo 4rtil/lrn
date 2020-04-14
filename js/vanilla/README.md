@@ -1,45 +1,46 @@
-## storing data by reference (non-primitive types i.e. objects, functions, arrays, etc.) & by value (primitive types)
+# table of contents
+## 1. [data types & structures](#data-structures)
+### 1.1. [primitives](#data-structures)
+### 1.2. [null](#null)
+### 1.3. [objects](#objects)
+### 1.4. [functions](#functions)
+## 1. [data structures](#data-structures)
+## 1. [data structures](#data-structures)
+## 1. [data structures](#data-structures)
 
-```javascript
-let game = {
-    "suspects": [
-        {
-            name: "Rusty",
-            color: "orange"
-        }, {
-            name: "Miss Scarlet",
-            color: "red"
-        }
-    ]
-}
-```
+# data types & structures <a id="data-structures"></a>
 
-## destructuring
+Reference:
+* by value (primitive types)
+* storing data by reference (non-primitive types i.e. objects, functions, arrays, etc.)
 
-```javascript
-var [a, [b, [c, d]]] = [1, [2, [[[3, 4], 5], 6]]];
+## primitives <a id="primitives"></a>
 
-var [{color: col1}, {color: col2}] = game.suspects;
-```
+* undefined : typeof instance === "undefined"
+* Boolean : typeof instance === "boolean"
+* Number : typeof instance === "number"
+* String : typeof instance === "string"
+* BigInt : typeof instance === "bigint"
+* Symbol : typeof instance === "symbol"
 
-## looping through props of an object
+## null <a id="null"></a>
 
-## are JS prototypes from OOP or FP?
+* null : typeof instance === "object". Special primitive not used as a data value
+* Almost every constructed instance ends with null at the end of Prototype Chain
 
-# scope
+## objects <a id="objects"></a>
 
-everytime a function is invoked, new execution context is created
+*  Object : typeof instance === "object". Special non data but Structural type for any Constructed instance: new Object, new Array, new Map, new Set, new WeekMap, new WeakSet, new Date and almost everything made with new keyword;
 
-## implementation of underscore's each function
-var _ = {};
 
-_.each = function(list, callback) {
-    for (let item in list) {
-        callback(item);
-    }
-};
 
-## higher-order functions - functions that accept a function as input or return a function on output
+## functions <a id="functions"></a>
+
+* Function : typeof instance === "function". Special shorthand for Functions, though every Function constructor is derived from Object constructor.
+
+> everytime a function is invoked, new execution context is created
+
+> higher-order functions - functions that accept a function as input or return a function on output
 
 ## currying
 
@@ -73,9 +74,40 @@ counter.reset(); //0
 
 ## callbacks
 
-# arrays - functional style
+## promises
 
-## exercise 1 - intersection
+### destructuring
+
+```javascript
+let game = {
+    "suspects": [
+        {
+            name: "Rusty",
+            color: "orange"
+        }, {
+            name: "Miss Scarlet",
+            color: "red"
+        }
+    ]
+}
+
+var [a, [b, [c, d]]] = [1, [2, [[[3, 4], 5], 6]]];
+
+var [{color: col1}, {color: col2}] = game.suspects;
+```
+
+# arrays
+
+> JavaScript `Array` class is a global object that is used in the construction of arrays; which are high-level, list-like objects
+
+> neither the length of a JavaScript array nor the types of its elements are fixed
+
+> using an invalid index number returns `undefined`
+
+[array functional style](#array-exercise-intersection)
+
+
+## exercise 1 - intersection <a id="array-exercise-intersection"></a>
 
 Construct a function named intersection that compares input arrays and returns a new array with elements found in all of the inputs. BONUS: Use reduce! 
 ```javascript
@@ -113,6 +145,24 @@ function union(...arrays) {
   
   console.log('Union 2 [0,1,10]: ' + union([0,7,7,7,0], [], [], [0,0,1,1,1,1,10,1,0], [0,0,0,0]));
 ```
+
+## exercise 3 - each
+Implement underscore's each function.
+```javascript
+var _ = {};
+
+_.each = function(list, callback) {
+    for (let item in list) {
+        callback(item);
+    }
+};
+```
+
 # PATTERNS
 
 ## module pattern
+## decorator pattern
+
+# pending questions
+1. looping through props of an object
+2. are JS prototypes from OOP or FP?
