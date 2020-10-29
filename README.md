@@ -2,6 +2,6 @@
 Learning.
 
 
-- [ ] docker, docker-compose
-- [ ] nvm, node, npm
-- [ ] jabba, java
+- [x] docker, docker-compose
+- [x] nvm, node, npm
+- [x] jabba, java
