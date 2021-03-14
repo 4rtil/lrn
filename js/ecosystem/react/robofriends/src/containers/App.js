@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import CardList from '../components/CardList';
 import SearchBox from '../components/SearchBox';
-import './App.css';
 import Scroll from '../components/Scroll.js';
 import ErrorBoundry from '../components/ErrorBoundry';
+import './App.css';
 
 class App extends Component {
 
@@ -16,10 +16,16 @@ class App extends Component {
     }
 
     componentDidMount() {
-        fetch('https://jsonplaceholder.typicode.com/users')
+        //fetch('https://jsonplaceholder.typicode.com/users')
+        
+        fetch('http://localhost:8000/')
             .then(response => {return response.json()})
-            .then(users => {this.setState({ robots: users })});
-            this.setState({robots: []});
+            .catch(error => {return console.log(error)})
+            .then(users => {this.setState({ robots: users })})
+            .catch(error => {return console.log(error)});
+
+        //this.setState({robots: []});
+        
     }
 
     onSearchChange = (event) => {
