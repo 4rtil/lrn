@@ -1,59 +1,68 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import CardList from '../components/CardList';
 import SearchBox from '../components/SearchBox';
+import FamilyCheckbox from '../components/FamilyCheckbox';
 import Scroll from '../components/Scroll.js';
 import ErrorBoundry from '../components/ErrorBoundry';
 import './App.css';
 
-class App extends Component {
+const App = () => {
 
-    constructor() {
-        super();
-        this.state = {
-            robots: [],
-            searchField: ''
-        }
-    }
+    const [robots, setRobots] = useState([]);
+    const [searchField, setSearchField] = useState('');
+    const [familyCheckbox, setFamilyCheckbox] = useState(false);
 
-    componentDidMount() {
+    useEffect(() => {
+        
         //fetch('https://jsonplaceholder.typicode.com/users')
         
         fetch('http://localhost:8000/')
             .then(response => {return response.json()})
-            .catch(error => {return console.log(error)})
-            .then(users => {this.setState({ robots: users })})
-            .catch(error => {return console.log(error)});
+                .catch(error => {return console.log(error)})
+            .then(users => {setRobots(users)})
+                .catch(error => {return console.log(error)});
 
-        //this.setState({robots: []});
-        
+            console.log("rerender");
+    
+    }, []);
+
+    const onSearchChange = (event) => {
+        setSearchField(event.target.value); 
     }
 
-    onSearchChange = (event) => {
-        //console.log(event.target.value);
-        this.setState({searchField: event.target.value}); 
-        //this.setState({robots: filteredRobots});
+    const onCheckboxClick = () => {
+        setFamilyCheckbox(toggle(familyCheckbox));
     }
 
-    render() {
-        const { robots, searchField } = this.state; //destructuring state object into 2 variables
-        const filteredRobots = robots.filter(robot => {
-            return robot.name.toLocaleLowerCase().includes(searchField.toLocaleLowerCase());
-        })
-
-        return !robots.length ?
-             <h1 className="fl w-100 tc ba pa3">Loading</h1> :
-            (
-                <div className="tc">
-                    <h1 className="f1">Robofriends</h1>
-                    <SearchBox searchChange={this.onSearchChange} />
-                    <Scroll>
-                        <ErrorBoundry>
-                            <CardList robots={filteredRobots} />
-                        </ErrorBoundry>
-                    </Scroll>                
-                </div>
-            );
+    const toggle = (value) => {
+        return !value;
     }
+
+    const filteredRobots = robots.filter(robot => {
+        if (familyCheckbox) {
+            return robot.family && robot.name.toLocaleLowerCase().includes(searchField.toLocaleLowerCase())
+        } else {
+            return robot.name.toLocaleLowerCase().includes(searchField.toLocaleLowerCase())
+        };
+    });
+
+    return !robots.length ?
+            <h1 className="fl w-100 tc ba pa3">Loading</h1> :
+        (
+            <div className="tc">
+                <h1 className="f1">Robofriends</h1>
+                <menu className="flex justify-center">
+                    <SearchBox searchChange={onSearchChange} />
+                    <FamilyCheckbox checkboxChange={onCheckboxClick} />
+                </menu>
+                <Scroll>
+                    <ErrorBoundry>
+                        <CardList robots={filteredRobots} />
+                    </ErrorBoundry>
+                </Scroll>                
+            </div>
+        );
+
 }
 
 export default App;

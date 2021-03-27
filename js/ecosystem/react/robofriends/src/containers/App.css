@@ -10,3 +10,5 @@ h1 {
     font-weight: normal;
     src: local('SEGA LOGO FONT'), url('../assets/SEGA.woff') format('woff');
 }
+
+button {color: darkslategrey}
