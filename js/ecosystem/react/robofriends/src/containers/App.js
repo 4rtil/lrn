@@ -1,68 +1,69 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { connect } from "react-redux";
+
 import CardList from '../components/CardList';
 import SearchBox from '../components/SearchBox';
 import FamilyCheckbox from '../components/FamilyCheckbox';
 import Scroll from '../components/Scroll.js';
 import ErrorBoundry from '../components/ErrorBoundry';
+
 import './App.css';
 
-const App = () => {
+import { handleRobots, filterRobots } from "../actions";
 
-    const [robots, setRobots] = useState([]);
-    const [searchField, setSearchField] = useState('');
-    const [familyCheckbox, setFamilyCheckbox] = useState(false);
+const mapStateToProps = (state) => {
+    // console.info("mapStateToProps state:", state)
+    return {
+        searchField: state.handleRobots.searchField,
+        robots: state.handleRobots.robots,
+        filteredRobots : state.handleRobots.filteredRobots,
+        isPending: state.handleRobots.isPending,
+        error: state.handleRobots.error,
+        familyCheckbox: state.toggleFamilyCheckbox.familyCheckbox
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onRequestRobots: () => dispatch(handleRobots()),
+        onSearchChange: (event) => {
+            // console.info("App level log", props);
+            dispatch(filterRobots(event.target.value))
+        }
+    }
+}
+
+const App = (props) => {
+
+    // console.info("App level log", props);
+
+    const {
+        filteredRobots, isPending, familyCheckbox,
+        onRequestRobots, onSearchChange
+    }  = props;
 
     useEffect(() => {
-        
-        //fetch('https://jsonplaceholder.typicode.com/users')
-        
-        fetch('http://localhost:8000/')
-            .then(response => {return response.json()})
-                .catch(error => {return console.log(error)})
-            .then(users => {setRobots(users)})
-                .catch(error => {return console.log(error)});
+        onRequestRobots();
+        console.info("useEffect hook triggered rerender");
+    }, [onRequestRobots]);
 
-            console.log("rerender");
-    
-    }, []);
-
-    const onSearchChange = (event) => {
-        setSearchField(event.target.value); 
-    }
-
-    const onCheckboxClick = () => {
-        setFamilyCheckbox(toggle(familyCheckbox));
-    }
-
-    const toggle = (value) => {
-        return !value;
-    }
-
-    const filteredRobots = robots.filter(robot => {
-        if (familyCheckbox) {
-            return robot.family && robot.name.toLocaleLowerCase().includes(searchField.toLocaleLowerCase())
-        } else {
-            return robot.name.toLocaleLowerCase().includes(searchField.toLocaleLowerCase())
-        };
-    });
-
-    return !robots.length ?
-            <h1 className="fl w-100 tc ba pa3">Loading</h1> :
+    return isPending ?
+        <h1 className="fl w-100 tc ba pa3">Loading</h1> :
         (
             <div className="tc">
                 <h1 className="f1">Robofriends</h1>
                 <menu className="flex justify-center">
-                    <SearchBox searchChange={onSearchChange} />
-                    <FamilyCheckbox checkboxChange={onCheckboxClick} />
+                    <SearchBox searchChange={onSearchChange} active={familyCheckbox} />
+                    <FamilyCheckbox />
                 </menu>
                 <Scroll>
                     <ErrorBoundry>
                         <CardList robots={filteredRobots} />
                     </ErrorBoundry>
-                </Scroll>                
+                </Scroll>
             </div>
         );
 
 }
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
