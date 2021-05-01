@@ -2,14 +2,16 @@ const fetch = require('node-fetch');
 
 const getPeoplePromise = fetch => {
     console.log('promise mode');
-    fetch('http://swapi.py4e.com/api/people/')
-    .then(response => response.json())
+    return fetch('http://swapi.py4e.com/api/people/')
+    .then(res => res.json())
     .then(data => {
-        console.log(data);
+        //console.log(data);
         return {
             count: data.count,
             results: data.results
         }
+    }).catch(error => {
+        console.log(error);
     })
 }
 
@@ -17,7 +19,7 @@ const getPeople = async (fetch) => {
     console.log('async/await mode');
     const getRequest = await fetch('http://swapi.py4e.com/api/people/')
     const data = await getRequest.json();
-    console.log(data);
+    //console.log(data);
     return {
         count: data.count,
         results: data.results
@@ -28,9 +30,9 @@ if (process.argv[2] === '-t') {
     if (process.argv[3]) {
         switch (process.argv[3]) {
             case 'promise':
-                return getPeoplePromise(fetch);
+                getPeoplePromise(fetch);
             case 'async/await':
-                return getPeople(fetch);
+                getPeople(fetch);
             default:
                 console.log('incorrect type flag parameter');
         }
@@ -40,4 +42,9 @@ if (process.argv[2] === '-t') {
     }
 } else {
     console.log('missing required \'-t\' flag');
+}
+
+module.exports = {
+    getPeople,
+    getPeoplePromise
 }
