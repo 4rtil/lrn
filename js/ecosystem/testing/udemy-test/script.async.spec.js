@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 const swapi = require('./script.async');
 
-it('calls SWAPI to fetch people', () => {
+it('getPeoplePromise calls SWAPI to fetch people', () => {
     expect.assertions(2);
     return swapi.getPeoplePromise(fetch)
     .then(data => {
@@ -10,7 +10,16 @@ it('calls SWAPI to fetch people', () => {
     })
 })
 
-it('getPeople returns count and results', () => {
+it('getPeople calls SWAPI to fetch people', () => {
+    expect.assertions(2);
+    return swapi.getPeople(fetch)
+    .then(data => {
+       expect(data.count).toEqual(87);
+       expect(data.results.length).toBeGreaterThan(5);
+    })
+})
+
+it('getPeoplePromise returns count and results', () => {
     const mockFetch = jest.fn().mockReturnValue(Promise.resolve({
         json: () => Promise.resolve({
             count: 87,
@@ -25,4 +34,10 @@ it('getPeople returns count and results', () => {
         expect(data.count).toEqual(87);
         expect(data.results.length).toBeGreaterThan(5);
     })
+})
+
+it('logs an error in case of failure', () => {
+    const mockFetchFailure = jest.fn().mockRejectedValue(Promise.reject(new Error('some error')));
+    expect.assertions(1);
+    return expect(swapi.getPeoplePromise(mockFetchFailure)).rejects.toEqual(new Error('some error'))
 })
