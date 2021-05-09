@@ -10,10 +10,10 @@ const firstObject = {
     ]
 }
 
+//copy object using Object's assign method
 const secondObject = Object.assign({}, firstObject, { secondProp: "ipsum"})
-
 console.info("secondObject: \n", secondObject);
 
+//copy object using spread operator
 const thirdObject = { ...firstObject, secondProp: "dolor", thirdProp[0].one: "pietruszka" }
-
 console.info("thirdObject: \n", thirdObject);
