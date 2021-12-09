@@ -16,7 +16,6 @@ process.stdin.on('end', function() {
     inputString = inputString.replace(/\s*$/, '')
         .split('\n')
         .map(str => str.replace(/\s*$/, ''));
-
     main();
 });
 

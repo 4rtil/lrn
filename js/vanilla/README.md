@@ -107,8 +107,16 @@ counter.reset(); //0
 ## callbacks
 
 ## promises
+Promises are a modern JavaScript feature for performing asynchronous operations.
+Promise is in one of these states:
+- pending: initial state, neither fulfilled nor rejected.
+- fulfilled: meaning that the operation was completed successfully.
+- rejected: meaning that the operation failed.
 
-### destructuring
+The methods promise.then(), promise.catch(), and promise.finally() are used to associate further action with a promise that becomes settled.
+
+
+## destructuring
 
 ```javascript
 let game = {
@@ -191,7 +199,65 @@ _.each = function(list, callback) {
 # PATTERNS
 
 ## module pattern
+- TBD
 ## decorator pattern
+- TBD
+## named parameters / arguments
+- let's look at code below - the function accepts 7 arguments, but we don't have an easy way of knowing what is what 🤔
+    ```javascript
+    apiRequest(
+    'products',
+    'GET',
+    { category: 3 },
+    ["Content-Type: text/plain"],
+    function(response) { ... },
+    null,
+    true
+    )
+    ```
+- now let's acknowledge three things:
+    - firstly, destructuring assignment - a neat way to unpack values from arrays & objects:
+    ```javascript
+    let o = { a: 1, b: 2, c: 3 };
+    let { a: a, b: b, c: c } = o; //a = 1, b = 2, c = 3
+    ```
+    - then, shorthand property names - given an object key/value pair with the same name, we can remove one of them and achieve a terser syntax:
+    ```javascript
+    let o = { a: 1, b: 2, c: 3 };
+    let { a, b, c } = o; //same, a = 1, b = 2, c = 3
+    ```
+    - finally, passing an object as an argument to a function, which is kinda BAU in JS,
+- so now *apiRequest* definition looks like this: 
+    ```javascript
+    function apiRequest({
+        endpoint,
+        method = 'GET',
+        getParams = {},
+        headers = ['Content-Type: text-plain'],
+        callback = () => {},
+        timeout = 0,
+        authRequest = true,
+    } = {}) {
+    //...
+    }
+    ```
+    and we can call it like this: 
+    ```javascript
+    apiRequest({
+        endpoint: 'stocks',
+        getParams: { ticker: 'ASB' },
+        callback: function () {...}
+    })
+    ```
+- which has some benefits:
+    - each parameter is now described, we provide the context,
+    - objects don't care about order of their props, so we can mix 'em up and avoid putting nulls to reach forths param e.g. ```apiRequest('stocks', 'GET', null, null, function )```
+    - with some default values defined we don't have to pass all the params,
+    - we can apply similar pattern to returned values and have several variables returned instead of just one:
+    ```javascript
+    let { response, error, loading } = apiRequest({ ... })
+    ```
+
 
 # pending questions
 1. looping through props of an object
