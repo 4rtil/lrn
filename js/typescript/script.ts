@@ -1,1 +1,0 @@
-let bool : boolean = true;
