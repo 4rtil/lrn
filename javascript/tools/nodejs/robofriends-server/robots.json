@@ -1,0 +1,65 @@
+[
+    {
+        "id": 1,
+        "name": "Hakuna Matata",
+        "username": "Hakmat",
+        "email": "hakuna@matata.af",
+        "family": false
+    },
+    {
+        "id": 2,
+        "name": "Bonkers Honkers",
+        "username": "Bonhon",
+        "email": "bon@hon.co.uk",
+        "family": false
+    },
+    {
+        "id": 3,
+        "name": "Kromulon Friedmanson",
+        "username": "kromulon69",
+        "email": "dooopa@stoneshit.pl",
+        "family": false
+    },
+    {
+        "id": 4,
+        "name": "Joe Frazier",
+        "username": "boxer",
+        "email": "joe@frazier.com",
+        "family": false
+    },
+    {
+        "id": 5,
+        "name": "Adaś Świątek-Brzeziński",
+        "username": "adam",
+        "email": "blebleble@ble.pl",
+        "family": true
+    },
+    {
+        "id": 6,
+        "name": "Artur Świątek-Brzeziński",
+        "username": "art",
+        "email": "blebleble@ble.pl",
+        "family": true
+    },
+    {
+        "id": 7,
+        "name": "Beata Świątek-Brzezińska",
+        "username": "adam",
+        "email": "beatka@atkabe.pl",
+        "family": true
+    },
+    {
+        "id": 8,
+        "name": "Witek Świątek-Brzeziński",
+        "username": "wit",
+        "email": "witko@kitko.pl",
+        "family": true
+    },
+    {
+        "id": 9,
+        "name": "Jaś Świątek-Brzeziński",
+        "username": "johhny",
+        "email": "johnny@cage.pl",
+        "family": true
+    }
+]
